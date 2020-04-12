@@ -2,14 +2,15 @@ package subscriber
 
 import (
 	"context"
+
 	log "github.com/micro/go-micro/v2/logger"
 
 	TwitchChat "github.com/Heiss/TwitchChat/proto/TwitchChat"
 )
 
-type TwitchChat struct{}
+type TwitchChatStruct struct{}
 
-func (e *TwitchChat) Handle(ctx context.Context, msg *TwitchChat.Message) error {
+func (e *TwitchChatStruct) Handle(ctx context.Context, msg *TwitchChat.Message) error {
 	log.Info("Handler Received message: ", msg.Say)
 	return nil
 }

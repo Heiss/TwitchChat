@@ -1,10 +1,10 @@
 package main
 
 import (
-	log "github.com/micro/go-micro/v2/logger"
-	"github.com/micro/go-micro/v2"
 	"github.com/Heiss/TwitchChat/handler"
 	"github.com/Heiss/TwitchChat/subscriber"
+	"github.com/micro/go-micro/v2"
+	log "github.com/micro/go-micro/v2/logger"
 
 	TwitchChat "github.com/Heiss/TwitchChat/proto/TwitchChat"
 )
@@ -20,10 +20,10 @@ func main() {
 	service.Init()
 
 	// Register Handler
-	TwitchChat.RegisterTwitchChatHandler(service.Server(), new(handler.TwitchChat))
+	TwitchChat.RegisterTwitchChatHandler(service.Server(), new(handler.TwitchChatStruct))
 
 	// Register Struct as Subscriber
-	micro.RegisterSubscriber("go.micro.service.TwitchChat", service.Server(), new(subscriber.TwitchChat))
+	micro.RegisterSubscriber("go.micro.service.TwitchChat", service.Server(), new(subscriber.TwitchChatStruct))
 
 	// Run service
 	if err := service.Run(); err != nil {

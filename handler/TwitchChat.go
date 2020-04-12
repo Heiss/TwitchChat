@@ -8,17 +8,17 @@ import (
 	TwitchChat "github.com/Heiss/TwitchChat/proto/TwitchChat"
 )
 
-type TwitchChat struct{}
+type TwitchChatStruct struct{}
 
 // Call is a single request handler called via client.Call or the generated client code
-func (e *TwitchChat) Call(ctx context.Context, req *TwitchChat.Request, rsp *TwitchChat.Response) error {
+func (e *TwitchChatStruct) Call(ctx context.Context, req *TwitchChat.Request, rsp *TwitchChat.Response) error {
 	log.Info("Received TwitchChat.Call request")
 	rsp.Msg = "Hello " + req.Name
 	return nil
 }
 
 // Stream is a server side stream handler called via client.Stream or the generated client code
-func (e *TwitchChat) Stream(ctx context.Context, req *TwitchChat.StreamingRequest, stream TwitchChat.TwitchChat_StreamStream) error {
+func (e *TwitchChatStruct) Stream(ctx context.Context, req *TwitchChat.StreamingRequest, stream TwitchChat.TwitchChat_StreamStream) error {
 	log.Infof("Received TwitchChat.Stream request with count: %d", req.Count)
 
 	for i := 0; i < int(req.Count); i++ {
@@ -34,7 +34,7 @@ func (e *TwitchChat) Stream(ctx context.Context, req *TwitchChat.StreamingReques
 }
 
 // PingPong is a bidirectional stream handler called via client.Stream or the generated client code
-func (e *TwitchChat) PingPong(ctx context.Context, stream TwitchChat.TwitchChat_PingPongStream) error {
+func (e *TwitchChatStruct) PingPong(ctx context.Context, stream TwitchChat.TwitchChat_PingPongStream) error {
 	for {
 		req, err := stream.Recv()
 		if err != nil {
